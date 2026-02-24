@@ -45,7 +45,7 @@ For dedicated servers or bare metal usage. This script completely automates the 
 Run this single command as root (or a user with sudo privileges):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/SP-J123/AstroBox/master/Final/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/SP-J123/AstroBox/main/Final/install.sh | sudo bash
 ```
 
 **Post-Install Configuration**:
