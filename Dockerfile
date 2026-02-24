@@ -8,7 +8,7 @@ RUN apk add --no-cache python3 make g++
 
 # Copy package files and install all dependencies (including dev deps to build)
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Copy full source and build
 COPY . .
@@ -29,7 +29,7 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
 # Copy production package files
 COPY package*.json ./
 # Install only production dependencies
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm install --omit=dev && npm cache clean --force
 
 # Copy built assets and server files from builder
 COPY --from=builder /app/dist ./dist
