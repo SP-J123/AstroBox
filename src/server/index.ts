@@ -66,7 +66,7 @@ const silentMode = parseEnvBool('SILENT_MODE', true);
 const analyzeTimeoutMs = parseEnvInt('ANALYZE_TIMEOUT_MS', 30_000, 5_000, 120_000);
 const analyzeConcurrency = parseEnvInt('ANALYZE_CONCURRENCY', 4, 1, 10);
 const jobRetentionMs = parseEnvInt('JOB_RETENTION_MS', 6 * 60 * 60 * 1000, 60_000, 24 * 60 * 60 * 1000);
-const writeApiToken = process.env.API_TOKEN?.trim() || '';
+let writeApiToken = process.env.API_TOKEN?.trim() || '';
 const requireApiToken = parseEnvBool('REQUIRE_API_TOKEN', true);
 const ticketTtlMs = parseEnvInt('AUTH_TICKET_TTL_MS', 120_000, 15_000, 30 * 60 * 1000);
 const dnsCacheTtlMs = parseEnvInt('DNS_CACHE_TTL_MS', 5 * 60 * 1000, 15_000, 24 * 60 * 60 * 1000);
@@ -77,7 +77,13 @@ const corsOrigins = (process.env.CORS_ORIGINS || '')
 const isProduction = process.env.NODE_ENV === 'production';
 
 if (isProduction && requireApiToken && !writeApiToken) {
-  throw new Error('API_TOKEN is required in production. Set REQUIRE_API_TOKEN=false only for trusted local environments.');
+  writeApiToken = randomUUID();
+  console.warn('\n================================================================');
+  console.warn('⚠️  SECURITY NOTICE: No API_TOKEN was found in your environment!');
+  console.warn('⚠️  AstroBox has auto-generated a secure token for this session.');
+  console.warn(`⚠️  Your temporary API_TOKEN is: ${writeApiToken}`);
+  console.warn('⚠️  Please set the API_TOKEN environment variable permanently.');
+  console.warn('================================================================\n');
 }
 
 fs.mkdirSync(downloadBase, { recursive: true });
