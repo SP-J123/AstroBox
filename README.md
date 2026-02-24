@@ -1,24 +1,32 @@
-# AstroBox
+<div align="center">
+  <img src="docs/images/dashboard.png" width="800" alt="AstroBox Dashboard">
+  <br>
+  <h1>AstroBox</h1>
+  <h3>The Ultimate, Unrestricted Media Orchestration Engine</h3>
+</div>
 
-**Unrestricted, high-performance media downloader.**
+<p align="center">
+  Break free from ad-riddled, unreliable web downloaders. AstroBox gives you absolute digital sovereignty over your media. Powered by a robust Node.js backend utilizing <code>yt-dlp</code> and <code>ffmpeg</code>, AstroBox guarantees pristine quality media extraction—wrapped in an immersive, dynamically shifting Glassmorphism interface. 
+</p>
 
-AstroBox is a sleek, web-based media downloader powered by `yt-dlp` and `ffmpeg`. It solves the problem of unreliable, ad-ridden online downloaders by giving you a beautiful orchestration engine running on your own hardware. 
+## Why AstroBox?
+Whether you are a data hoarder archiving history, a video editor needing lossless source files, or a home lab enthusiast curating a Plex library, AstroBox provides an unparalleled self-hosted experience. 
 
-Target Audience: Data hoarders, archivists, video editors, and home lab enthusiasts.
+- 🌌 **Immersive Dual-Theme Design**: Switch effortlessly between a deep 100-star animated Galaxy dark mode and a warm, drifting Sunrise light mode. 
+- 🚀 **Universal Compatibility**: Effortlessly grab content from YouTube, Twitch, Twitter, Reddit, Soundcloud, and thousands of other endpoints.
+- ⚙️ **Audiophile & Cinephile Control**: Enforce 4K resolution targeting, prioritize 60FPS, extract FLAC/ALAC audio, and seamlessly handle HDR formats.
+- 🎬 **Automated Post-Processing**: Let AstroBox do the heavy lifting—automatic SponsorBlock removal, precision chapter splitting, and embedded metadata tagging.
+- 🛡️ **Hardened Self-Hosting**: Built-in Server-Side Request Forgery (SSRF) protection and configurable API-token security keeps your server locked down.
+- 🗂️ **Workflow Profiles**: Save reusable configurations (e.g., "MP3 Quick", "FLAC Archive", "Best Video") to initiate downloads with a single click.
 
-## Features
-- 🚀 **Universal Compatibility**: Download from YouTube, Twitch, Twitter, Reddit, Soundcloud, and thousands more.
-- 🎨 **Beautiful Glassmorphism UI**: Dynamic Astro/Galaxy dark themes and Sunrise light themes.
-- ⚙️ **Advanced Workflows**: Fine-tune Audio Extraction, 4K priority, 60FPS preference, and HDR handling.
-- 🎬 **Post-Processing**: Built-in SponsorBlock skipping, chapter splitting, and metadata embedding.
-- 🛡️ **Security Built-In**: Optional API authentication and rigid SSRF protection out of the box.
-- 🗂️ **Profile Management**: Save reusable configurations for different types of media (e.g., MP3 Quick, FLAC Archive, Best Video).
-
-## Screenshots
+## Application Previews
 *(Images located in `docs/images/`)*
 
-- **Dashboard**: `![Dashboard Setup](docs/images/dashboard.png)`
-- **Advanced Options**: `![Options Panel](docs/images/options.png)`
+### Responsive Dashboard
+![Dashboard](docs/images/dashboard.png)
+
+### Advanced Configuration Panel
+![Options](docs/images/options.png)
 
 ## Tech Stack
 - **Backend**: Node.js 18, Express.js, Zod
