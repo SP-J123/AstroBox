@@ -13,7 +13,7 @@
 Whether you are a data hoarder archiving history, a video editor needing lossless source files, or a home lab enthusiast curating a Plex library, AstroBox provides an unparalleled self-hosted experience. 
 
 - 🌌 **Immersive Dual-Theme Design**: Switch effortlessly between a deep 100-star animated Galaxy dark mode and a warm, drifting Sunrise light mode. 
-- 🚀 **Universal Compatibility**: Effortlessly grab content from YouTube, Twitch, Twitter, Reddit, Soundcloud, and thousands of other endpoints.
+- 🚀 **Universal Compatibility**: Effortlessly grab content from **YouTube, Twitch, Twitter/X, Reddit, TikTok, SoundCloud, Instagram, Vimeo, Facebook, BiliBili**, and 1,000+ other endpoints.
 - ⚙️ **Audiophile & Cinephile Control**: Enforce 4K resolution targeting, prioritize 60FPS, extract FLAC/ALAC audio, and seamlessly handle HDR formats.
 - 🎬 **Automated Post-Processing**: Let AstroBox do the heavy lifting—automatic SponsorBlock removal, precision chapter splitting, and embedded metadata tagging.
 - 🛡️ **Hardened Self-Hosting**: Built-in Server-Side Request Forgery (SSRF) protection and configurable API-token security keeps your server locked down.
