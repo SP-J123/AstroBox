@@ -180,7 +180,8 @@ const downloadSchema = z.object({
       fps60: z.boolean().optional(),
       hdr: z.boolean().optional(),
       userAgent: z.string().max(200).regex(/^[^\r\n]*$/, 'Invalid user agent').optional(),
-      referrer: z.union([z.literal(''), z.string().url().max(200)]).optional()
+      referrer: z.union([z.literal(''), z.string().url().max(200)]).optional(),
+      bypassResources: z.boolean().optional()
     })
     .optional()
 });
@@ -225,6 +226,7 @@ type DownloadOptions = {
   rateLimit?: string;
   userAgent?: string;
   referrer?: string;
+  bypassResources?: boolean;
 };
 
 type Job = {
@@ -549,6 +551,7 @@ const ensureSafeTargetDir = (candidateDir: string) => {
 };
 
 const estimateJobResourceUnits = (options?: DownloadOptions) => {
+  if (options?.bypassResources) return 0;
   let units = 1;
   const quality = options?.quality || 'best';
   if (quality === '2160' || quality === '1440') units += 2;

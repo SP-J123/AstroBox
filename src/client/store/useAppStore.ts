@@ -72,7 +72,8 @@ const defaultOptions: DownloadOptions = {
   downloadFolder: '',
   customNamePrefix: '',
   itemsLimit: 0,
-  chapterTemplate: '%(title)s - %(section_number)02d - %(section_title)s.%(ext)s'
+  chapterTemplate: '%(title)s - %(section_number)02d - %(section_title)s.%(ext)s',
+  bypassResources: false
 };
 
 const getId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}_${Math.random()}`);
@@ -328,7 +329,8 @@ const createDownloadSlice: StateCreator<AppState, [], [], DownloadSlice> = (set,
       quality: rawOptions.quality,
       format: normalizedFormat,
       autoStart: rawOptions.autoStart,
-      splitChapters: rawOptions.splitChapters
+      splitChapters: rawOptions.splitChapters,
+      bypassResources: rawOptions.bypassResources
     };
     if (rawOptions.downloadFolder.trim()) options.downloadFolder = rawOptions.downloadFolder.trim();
     if (rawOptions.customNamePrefix.trim()) options.customNamePrefix = rawOptions.customNamePrefix.trim();

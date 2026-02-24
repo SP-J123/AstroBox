@@ -1,8 +1,11 @@
 import { Moon, Sun } from 'lucide-react';
 import { useUiStore } from '../store/useUiStore';
+import useAppStore from '../store/useAppStore';
 
 const AppHeader = () => {
   const { theme, toggleTheme } = useUiStore();
+  const options = useAppStore((state) => state.options);
+  const setOption = useAppStore((state) => state.setOption);
 
   return (
     <header className="flex items-center justify-between gap-4">
@@ -20,23 +23,46 @@ const AppHeader = () => {
           <p className="text-xs font-medium text-slate-400">Unrestricted media downloader</p>
         </div>
       </div>
-      <button
-        type="button"
-        className={`theme-toggle ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
-        onClick={toggleTheme}
-        aria-label="Toggle theme"
-        aria-pressed={theme === 'light'}
-      >
-        <span className="theme-toggle-icon">
-          <Sun className="h-3.5 w-3.5" />
-        </span>
-        <span className="theme-toggle-icon">
-          <Moon className="h-3.5 w-3.5" />
-        </span>
-        <span className="theme-toggle-thumb">
-          {theme === 'dark' ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
-        </span>
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => setOption('bypassResources', !options.bypassResources)}
+          className={`flex h-[34px] items-center gap-2 rounded-full px-4 text-[11px] font-bold uppercase tracking-wider transition-colors ${options.bypassResources
+              ? 'border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 shadow-[0_0_12px_rgba(239,68,68,0.2)]'
+              : 'border border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200'
+            }`}
+          title="Bypass server hardware limits"
+        >
+          <span className="relative flex h-2 w-2">
+            {options.bypassResources && (
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+            )}
+            <span
+              className={`relative inline-flex h-2 w-2 rounded-full ${options.bypassResources ? 'bg-red-500' : 'bg-slate-500'}`}
+            ></span>
+          </span>
+          <span className="hidden sm:inline">Bypass Limits</span>
+          <span className="inline sm:hidden">Bypass</span>
+        </button>
+
+        <button
+          type="button"
+          className={`theme-toggle ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          aria-pressed={theme === 'light'}
+        >
+          <span className="theme-toggle-icon">
+            <Sun className="h-3.5 w-3.5" />
+          </span>
+          <span className="theme-toggle-icon">
+            <Moon className="h-3.5 w-3.5" />
+          </span>
+          <span className="theme-toggle-thumb">
+            {theme === 'dark' ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
+          </span>
+        </button>
+      </div>
     </header>
   );
 };

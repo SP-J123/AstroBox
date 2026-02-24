@@ -62,6 +62,7 @@ export type DownloadOptions = {
   customNamePrefix: string;
   itemsLimit: number;
   chapterTemplate: string;
+  bypassResources: boolean;
 };
 
 export type Profile = {
