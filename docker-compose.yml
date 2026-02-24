@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  astrobox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: astrobox:production
+    container_name: astrobox
+    restart: always
+    ports:
+      - "3536:3536"
+    env_file:
+      - .env
+    volumes:
+      - ./downloads:/app/downloads # Downloaded media mapped to host
+      - ./config:/app/config # History DB, profiles, cookies
+    environment:
+      - NODE_ENV=production
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
