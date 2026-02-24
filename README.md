@@ -40,17 +40,16 @@ Whether you are a data hoarder archiving history, a video editor needing lossles
 
 ### Method 1 — Direct VPS Install (Debian / Ubuntu)
 
-For dedicated servers or bare metal usage. This script installs all prerequisites (Node, Python, FFmpeg, yt-dlp) and configures a resilient `systemd` service.
+For dedicated servers or bare metal usage. This script completely automates the installation of Node.js 18, Python, FFmpeg, and yt-dlp, pulling the codebase and configuring a resilient `systemd` service for you.
+
+Run this single command as root (or a user with sudo privileges):
 
 ```bash
-git clone https://github.com/SP-J123/AstroBox.git
-cd AstroBox/Final
-chmod +x install.sh
-sudo ./install.sh
+curl -sSL https://raw.githubusercontent.com/SP-J123/AstroBox/master/Final/install.sh | sudo bash
 ```
 
 **Post-Install Configuration**:
-- Edit environment limits: `sudo nano /opt/astrobox/.env`
+- Edit environment limits: `sudo nano /opt/astrobox/Final/.env`
 - Restart the service: `sudo systemctl restart astrobox`
 - View live logs: `sudo journalctl -fu astrobox`
 

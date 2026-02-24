@@ -45,17 +45,26 @@ fi
 
 # 5. Application Setup
 INSTALL_DIR="/opt/astrobox"
+REPO_URL="https://github.com/SP-J123/AstroBox.git"
+
 echo -e "${YELLOW}Setting up AstroBox in ${INSTALL_DIR}...${NC}"
 
-# Create directories
-mkdir -p "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR/downloads"
-mkdir -p "$INSTALL_DIR/config"
+# Create directories or use existing
+if [ ! -d "$INSTALL_DIR" ]; then
+    echo -e "${YELLOW}Cloning AstroBox repository to ${INSTALL_DIR}...${NC}"
+    mkdir -p "$INSTALL_DIR"
+    git clone "$REPO_URL" "$INSTALL_DIR"
+else
+    echo -e "${GREEN}Directory $INSTALL_DIR already exists. Updating from Git...${NC}"
+    cd "$INSTALL_DIR"
+    git pull origin master || echo -e "${YELLOW}Warning: Git pull failed or not a git repository. Continuing...${NC}"
+fi
 
-# Copy current directory contents (the Final release files) to the install directory
-cp -r ./* "$INSTALL_DIR/"
+# Ensure basic subdirectories exist
+mkdir -p "$INSTALL_DIR/Final/downloads"
+mkdir -p "$INSTALL_DIR/Final/config"
 
-cd "$INSTALL_DIR"
+cd "$INSTALL_DIR/Final"
 
 # Ensure environment file exists safely without overwriting user configs
 if [ ! -f .env ]; then
