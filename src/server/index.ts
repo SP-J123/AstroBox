@@ -564,7 +564,14 @@ const getRuntimeBudget = () => {
   const totalMemMb = Math.floor(os.totalmem() / (1024 * 1024));
   const cpuBudgetUnits = Math.max(1, Math.floor(cpuCores * cpuUtilizationTarget * 2));
   const memBudgetUnits = Math.max(0, Math.floor((freeMemMb - minFreeMemMb) / Math.max(1, memPerResourceUnitMb)));
-  const dynamicUnitBudget = Math.max(0, Math.min(maxResourceUnits, cpuBudgetUnits, memBudgetUnits > 0 ? memBudgetUnits : 0));
+  let dynamicUnitBudget = Math.max(0, Math.min(maxResourceUnits, cpuBudgetUnits, memBudgetUnits > 0 ? memBudgetUnits : 0));
+
+  // Guarantee that at least 1 fundamental download slot is available in highly constrained environments 
+  // (e.g., 1GB VPS or restrictive Docker containers)
+  if (dynamicUnitBudget === 0) {
+    dynamicUnitBudget = 1;
+  }
+
   return {
     cpuCores,
     freeMemMb,
